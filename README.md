@@ -13,5 +13,5 @@ I have used react hooks like:
 
 The exchange is done vice-versa, that means that "toAmount" for example, is not always the result (the exchanged value), but it can be also the value to be exchanged. The same with "fromAmount", "fromCurrency" and "toCurrency". That's why I have decided to check this using a boolean const like "setAmountInFromCurrencyRow", which is true by default. If the change is done in the second row, this state is set to false, if the change is done in the first row, it is set to true. 
 
-
+For executing API requests I have used fetch() and axios too, just to show how they both can be implemented. 
 
