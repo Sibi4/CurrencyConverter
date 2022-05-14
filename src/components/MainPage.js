@@ -16,6 +16,7 @@ function MainPage() {
     toCurrency,
     setToCurrency,
     fromAmount,
+    setFromAmount,
     toAmount,
     setToAmount,
     amountInFromCurrencyRow,
@@ -55,20 +56,25 @@ function MainPage() {
   useEffect(() => {
     if (fromCurrency != null && toCurrency != null) {
       //make a GET request with axios
+      //check if the change is done in "FromCurrencyController", or "ToCurrencyController"
       axios
         .get(
-          `${BASE_EXCHANGE_URL}to=${toCurrency}&from=${fromCurrency}&amount=${fromAmount}`,
+          amountInFromCurrencyRow
+            ? `${BASE_EXCHANGE_URL}to=${toCurrency}&from=${fromCurrency}&amount=${fromAmount}`
+            : `${BASE_EXCHANGE_URL}to=${fromCurrency}&from=${toCurrency}&amount=${toAmount}`,
           {
             headers: {
-              apikey: "5Nmb623Px2chZq3lA2Z5Vxwr5YEhNOJb",
+              apikey: "oQM6mH1H3aP4KzYAwwDqKRVxNlwRIVn1",
             },
           }
         )
         .then((response) => {
-          setToAmount(response.data.result);
+          amountInFromCurrencyRow
+            ? setToAmount(response.data.result)
+            : setFromAmount(response.data.result);
         });
     }
-  }, [fromCurrency, toCurrency, fromAmount]);
+  }, [fromCurrency, toCurrency, fromAmount, toAmount]);
 
   return (
     <>

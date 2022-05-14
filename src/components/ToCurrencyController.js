@@ -13,16 +13,18 @@ function ToCurrencyController() {
     setAmountInFromCurrencyRow,
   } = useContext(MyContext);
 
+  function handleOnChangeToAmount(e) {
+    setToAmount(e.target.value);
+    setAmountInFromCurrencyRow(false);
+  }
+
   return (
     <div>
       <input
         type="number"
         className="input"
         value={toAmount}
-        onChange={(e) => {
-          setToAmount(e.target.value);
-          setAmountInFromCurrencyRow(false);
-        }}
+        onChange={handleOnChangeToAmount}
       />
       <select
         className="input"

@@ -12,16 +12,18 @@ function FromCurrencyController(props) {
     setAmountInFromCurrencyRow,
   } = useContext(MyContext);
 
+  function handleOnChangeFromAmount(e) {
+    setFromAmount(e.target.value);
+    setAmountInFromCurrencyRow(false);
+  }
+
   return (
     <div>
       <input
         type="number"
         className="input"
         value={fromAmount}
-        onChange={(e) => {
-          setFromAmount(e.target.value);
-          setAmountInFromCurrencyRow(false);
-        }}
+        onChange={handleOnChangeFromAmount}
       />
       <select
         className="input"
