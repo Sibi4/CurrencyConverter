@@ -26,15 +26,13 @@ function MainPage() {
     setToCurrencyInHeader,
   } = useContext(MyContext);
 
-  let amount;
+  //check if amount or currency is changed in "FromCurrencyController" or "ToCurrencyController" component based on boolean value of "amountInFromCurrencyRow" and set states for Header according to the following implementation
   if (amountInFromCurrencyRow) {
-    amount = fromAmount;
     setFromAmountInHeader(fromAmount);
     setFromCurrencyInHeader(fromCurrency);
     setToAmountInHeader(toAmount);
     setToCurrencyInHeader(toCurrency);
   } else {
-    amount = toAmount;
     setFromAmountInHeader(toAmount);
     setFromCurrencyInHeader(toCurrency);
     setToAmountInHeader(fromAmount);
@@ -56,7 +54,7 @@ function MainPage() {
   useEffect(() => {
     if (fromCurrency != null && toCurrency != null) {
       //make a GET request with axios
-      //check if the change is done in "FromCurrencyController", or "ToCurrencyController"
+      //ternary expression to check if the change is done in "FromCurrencyController", or "ToCurrencyController"
       axios
         .get(
           amountInFromCurrencyRow
@@ -69,9 +67,11 @@ function MainPage() {
           }
         )
         .then((response) => {
-          amountInFromCurrencyRow
-            ? setToAmount(response.data.result)
-            : setFromAmount(response.data.result);
+          if (amountInFromCurrencyRow) {
+            setToAmount(response.data.result);
+          } else {
+            setFromAmount(response.data.result);
+          }
         });
     }
   }, [fromCurrency, toCurrency, fromAmount, toAmount]);

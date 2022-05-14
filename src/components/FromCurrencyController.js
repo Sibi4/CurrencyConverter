@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import "../App.css";
 import MyContext from "./my-context";
 
-function FromCurrencyController(props) {
+function FromCurrencyController() {
   const {
     fromCurrency,
     setFromCurrency,
@@ -14,7 +14,7 @@ function FromCurrencyController(props) {
 
   function handleOnChangeFromAmount(e) {
     setFromAmount(e.target.value);
-    setAmountInFromCurrencyRow(false);
+    setAmountInFromCurrencyRow(true);
   }
 
   return (
